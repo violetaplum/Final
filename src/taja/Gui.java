@@ -1,9 +1,6 @@
 package taja;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.TextArea;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -38,7 +35,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 	private float tryCount = 0; // 시도 횟수 변수
 	private float correctCount = 0; // 맞은 횟수 정수
 	private int correctPercent; // 명중률 변수
-	public static ImageIcon icon, buttonIcon, buttonOnclick; // ImageIcon 정의
+	public static ImageIcon icon, icon2, buttonIcon, buttonOnclick; // ImageIcon 정의
 	private String studentNickname,studentName; // 학번과 , 학생이름 변수 String으로 정의
 	Connection con1 = null;
 	private TextArea ta1 = new TextArea();
@@ -50,6 +47,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 		setSize(800, 596); // 패널 사이즈를 800x600으로 지정한다
 		setLayout(null); // 위치를 절대값 위치로 지정하기 때문에, 레이아웃을 null로 지정한다
 		icon = new ImageIcon("img/sky.jpg");
+		icon2 = new ImageIcon("img/222.jpg");
 		//this.setBackground(Color.lightGray);
 		tajaLabel = new JLabel();
 		tajaLabel.setText("타자연습게임");
@@ -114,10 +112,15 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 			firstStart(); // firstStart 메소드 실행
 
 		}else if (e.getSource() == quitButton) { // quit버튼을 누르면
-			System.exit(0); // 프로그램을 종료한다
-
+			int flag=JOptionPane.showConfirmDialog(null,"종료하시겠습니까?","confirm",JOptionPane.OK_CANCEL_OPTION);
+			if(JOptionPane.CLOSED_OPTION==flag){
+				System.exit(0);
+			}else if(JOptionPane.YES_OPTION==flag) {
+				System.exit(0); // 프로그램을 종료한다
+			}
 		}
 	}
+
 
 	@Override
 	public void keyPressed(KeyEvent e) { // 키이벤트 정의
@@ -164,6 +167,8 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 	private void endAnswer2() throws Exception
 	{
 
+
+
 		// 게임이 끝났을 때의 메소드(정답을 모두 맞췄을 때)
 		if (arrJlabel[0].isVisible() == false && arrJlabel[1].isVisible() == false && arrJlabel[2].isVisible() == false
 				&& arrJlabel[3].isVisible() == false && arrJlabel[4].isVisible() == false
@@ -178,7 +183,8 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 			correctPercent = Math.round((correctCount / tryCount)* 100); /*
 			 * 명중률을 계산함. 맞은회수/총횟수 * 100해서 소수점 버림
 			 */
-			//icon = new ImageIcon("img/background3.jpg"); // 배경을 background3으로
+			icon = new ImageIcon("img/award2.jpg"); // 배경을 background3으로
+			this.repaint();
 			// 바꾼다
 			/*
 			 */
@@ -193,9 +199,6 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 
 				//--------------------------------------------------------------------DB start
-
-
-
 
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con1 = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","hr","hr");
@@ -220,8 +223,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				ArrayList<JLabel> arr=new ArrayList<JLabel>();
 				ArrayList<JLabel> arr2=new ArrayList<JLabel>();
 				int c=0;
-
-
+				
 				if(rss.next()) {
 					do{
 						String showName = rss.getString(1);
@@ -241,12 +243,6 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 					while(rss.next());
 				}
 
-
-
-
-
-
-
 				printAllJlabel2=new JLabel[5];
 				System.out.println(printAllJlabel2.length);
 				int cc=0;
@@ -256,9 +252,8 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 					printAllJlabel2[cc].setBounds(0, 0, 500, 30); // printAllJlabel2의 범위 지정
 					printAllJlabel2[cc].setFont(new Font("굴림", Font.BOLD, 25)); // printAllJlabel2의 폰트 지정
-					printAllJlabel2[cc].setForeground(Color.WHITE);
-
-					printAllJlabel2[cc].setLocation(150,(cc+3)*50);
+					printAllJlabel2[cc].setForeground(Color.black);
+					printAllJlabel2[cc].setLocation(180,(cc+3)*50);
 					add(printAllJlabel2[cc]);
 					cc++;
 					this.repaint();
@@ -271,13 +266,22 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 					printAllJlabel2[cc].setBounds(0, 0, 500, 30); // printAllJlabel2의 범위 지정
 					printAllJlabel2[cc].setFont(new Font("돋움", Font.BOLD, 25)); // printAllJlabel2의 폰트 지정
-					printAllJlabel2[cc].setForeground(Color.WHITE);
+					printAllJlabel2[cc].setForeground(Color.black);
 
-					printAllJlabel2[cc].setLocation(550,(cc+3)*50);
+					printAllJlabel2[cc].setLocation(580,(cc+3)*50);
 					add(printAllJlabel2[cc]);
 					cc++;
 					this.repaint();
 				}
+				icon = new ImageIcon("img/award.jpg");
+				this.repaint();
+
+				JLabel lb = new JLabel("Ranking");
+				lb.setBounds(180,30,200,50);
+				lb.setFont(new Font("돋음",Font.ITALIC,40));
+				lb.setForeground(Color.WHITE);
+				add(lb);
+				this.repaint();
 
 				quitButton = new JButton("확인");
 				quitButton.setBounds(340, 480, 80, 30);
@@ -331,10 +335,10 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 			 */
 
 			arrJlabel[i].setBounds(0, 0, 150, 30); // arrJLabel의 범위 지정
-			arrJlabel[i].setFont(new Font("굴림", Font.BOLD, 25)); // arrJLabel의 폰트 지정
+			arrJlabel[i].setFont(new Font("굴림", Font.BOLD, 15)); // arrJLabel의 폰트 지정
 			arrJlabel[i].setForeground(Color.WHITE);
 			int num=myRandom.nextInt(300) -200;
-			int num2=(i * 90)+30;
+			int num2=(i * 90)+15;
 			arrJlabel[i].setLocation(num2, num); // arrJLabel의
 			// 위치를
 			// 지정한다.
@@ -353,6 +357,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 		setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
 		super.paintComponent(g);
 	}
+
 
 
 }
