@@ -265,7 +265,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 
 					printAllJlabel2[cc].setBounds(0, 0, 500, 30); // printAllJlabel2의 범위 지정
-					printAllJlabel2[cc].setFont(new Font("돋움", Font.BOLD, 25)); // printAllJlabel2의 폰트 지정
+					printAllJlabel2[cc].setFont(new Font("바탕", Font.BOLD, 25)); // printAllJlabel2의 폰트 지정
 					printAllJlabel2[cc].setForeground(Color.black);
 
 					printAllJlabel2[cc].setLocation(580,(cc+3)*50);
@@ -278,7 +278,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 				JLabel lb = new JLabel("Ranking");
 				lb.setBounds(180,30,200,50);
-				lb.setFont(new Font("돋음",Font.ITALIC,40));
+				lb.setFont(new Font("바탕",Font.ITALIC,40));
 				lb.setForeground(Color.WHITE);
 				add(lb);
 				this.repaint();
@@ -308,10 +308,10 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 	private void firstStart() { // 시작하기 버튼을 눌렀을 때의 메소드(게임시작)
 
-		new JFrame(studentName+"의 게임!");
+		/*new JFrame(studentName+"의 게임!");*/
 		insertDap = new JTextField(2);
 		insertDap.addKeyListener(this); // 텍스트필드에 키 이벤트 추가(엔터)
-		insertDap.setFont(new Font("돋움",Font.BOLD,15));
+		insertDap.setFont(new Font("바탕",Font.BOLD,15));
 		insertDap.setBounds(320, 493, 150, 30);
 		add(insertDap); // 답을 입력하는 텍스트필드를 투명으로 만들어서 추가한다
 
@@ -335,7 +335,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 			 */
 
 			arrJlabel[i].setBounds(0, 0, 150, 30); // arrJLabel의 범위 지정
-			arrJlabel[i].setFont(new Font("굴림", Font.BOLD, 15)); // arrJLabel의 폰트 지정
+			arrJlabel[i].setFont(new Font("바탕", Font.BOLD, 15)); // arrJLabel의 폰트 지정
 			arrJlabel[i].setForeground(Color.WHITE);
 			int num=myRandom.nextInt(300) -200;
 			int num2=(i * 90)+15;
