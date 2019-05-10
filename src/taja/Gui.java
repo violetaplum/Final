@@ -213,8 +213,8 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				String name = studentName;
 				int time = total_play_time.gamePlayTime-1;
 				//¼±¾ðµé--------------------------------------------------------------------------------------end
-				PreparedStatement checkP = con1.prepareStatement(check);
-				ResultSet chrs = checkP.executeQuery();
+				/*PreparedStatement checkP = con1.prepareStatement(check);
+				ResultSet chrs = checkP.executeQuery();*/
 				String scoreString="";
 /*
 				if(chrs.next())
