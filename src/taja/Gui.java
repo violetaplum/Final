@@ -216,20 +216,18 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				/*PreparedStatement checkP = con1.prepareStatement(check);
 				ResultSet chrs = checkP.executeQuery();*/
 				String scoreString="";
-/*
-				if(chrs.next())
-				{
-					while(true)
-					{
-						String score = chrs.getString(1)
-					}
-				}*/
 
-						/*while(chrs.next())
-						{
-							String score = chrs.getString("TABLE_NAME");
-							scoreString += score+"\n";
-						}*/
+				/*if(chrs.next())
+				{
+					while(chrs.next())
+					{
+						String score = chrs.getString(1);
+						scoreString+=score+"\n";
+					}
+				}
+					String[] scoreArray = scoreString.split("\n");
+				*/
+
 
 /*
 
