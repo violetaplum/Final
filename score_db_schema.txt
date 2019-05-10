@@ -1,0 +1,5 @@
+create table score(
+id varchar2(30), 
+name varchar2(30), 
+time number(30)); 
+

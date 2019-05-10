@@ -170,8 +170,6 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 	private void endAnswer2() throws Exception
 	{
 
-
-
 		// 게임이 끝났을 때의 메소드(정답을 모두 맞췄을 때)
 		if (arrJlabel[0].isVisible() == false && arrJlabel[1].isVisible() == false && arrJlabel[2].isVisible() == false
 				&& arrJlabel[3].isVisible() == false && arrJlabel[4].isVisible() == false
@@ -196,13 +194,12 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 					"이름:  "+studentName+"\n"+"시간:  "+
 					Integer.toString(total_play_time.gamePlayTime-1) + "초\n정확도:  "+
 					Integer.toString(correctPercent) + "%\n","결과",JOptionPane.YES_OPTION);
-			if(JOptionPane.YES_OPTION==flag) {
+			if(JOptionPane.YES_OPTION==flag)
+			{
 				insertDap.setVisible(false);
 				total_play_time.playTime.setVisible(false);
 
-
 				//--------------------------------------------------------------------DB start
-
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con1 = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","hr","hr");
 				System.out.println("Connected");
@@ -213,34 +210,9 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				String name = studentName;
 				int time = total_play_time.gamePlayTime-1;
 				//선언들--------------------------------------------------------------------------------------end
-				/*PreparedStatement checkP = con1.prepareStatement(check);
-				ResultSet chrs = checkP.executeQuery();*/
 				String scoreString="";
 
-				/*if(chrs.next())
-				{
-					while(chrs.next())
-					{
-						String score = chrs.getString(1);
-						scoreString+=score+"\n";
-					}
-				}
-					String[] scoreArray = scoreString.split("\n");
-				*/
-
-
-/*
-
-					String[] scoreArray = scoreString.split("\n");
-					if(scoreString.contains("SCORE")!=true)
-					{
-						con1.prepareStatement(create).executeUpdate();
-					}
-*/
-
-
-
-				PreparedStatement inps = con1.prepareStatement(insert);
+			PreparedStatement inps = con1.prepareStatement(insert);
 				inps.setString(1,id);
 				inps.setString(2,name);
 				inps.setInt(3,time);
@@ -324,20 +296,9 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 			}// 종료하기 버튼을 만들어서 투명으로 설정한후
 			con1.close();
 			// ActionListener 추가한다
-			//--------------------------------------------------------------------DB start
-
-
-
-			//------------------------------------------------------------------DB end
 
 		}
 	}
-
-
-
-//--------------------------------------------------------------end DB
-
-
 
 	private void firstStart() { // 시작하기 버튼을 눌렀을 때의 메소드(게임시작)
 
