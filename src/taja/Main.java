@@ -1,7 +1,6 @@
 package taja;
 
 import javax.swing.JFrame;
-import java.net.*;
 import java.sql.*;
 
 public class Main extends JFrame {

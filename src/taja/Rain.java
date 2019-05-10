@@ -1,10 +1,9 @@
 package taja;
 
-import javax.swing.JOptionPane;
 
 public class Rain extends Thread { // 산성비 메소드 쓰레드를 상속받는다.
 
-	public int life = 3; // 초기 라이프 값 = 3
+
 
 	public void run() {
 		for (int i = 0; i < 100; i++) {
@@ -21,8 +20,6 @@ public class Rain extends Thread { // 산성비 메소드 쓰레드를 상속받는다.
 						Gui.arrJlabel[j].setVisible(false); // 만약 arrJlabe의 Y좌표가
 															// 400이상이 되면(바다에
 															// 진입하면)
-						 // 라이프를 1감소시킨다
-						
 					}
 
 				}

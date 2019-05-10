@@ -1,5 +1,7 @@
 package taja;
 
+import com.sun.deploy.util.ArrayUtil;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -203,10 +206,42 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con1 = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","hr","hr");
 				System.out.println("Connected");
+				String check = "select table_name from user_tables where table_name like 'SCORE'";
+				String create = "create table score(id varchar2(30), name varchar(30), time number(30))";
 				String insert = "insert into score(id,name,time) values(?,?,?)";
 				String id = studentNickname;
 				String name = studentName;
 				int time = total_play_time.gamePlayTime-1;
+				//¼±¾ðµé--------------------------------------------------------------------------------------end
+				PreparedStatement checkP = con1.prepareStatement(check);
+				ResultSet chrs = checkP.executeQuery();
+				String scoreString="";
+/*
+				if(chrs.next())
+				{
+					while(true)
+					{
+						String score = chrs.getString(1)
+					}
+				}*/
+
+						/*while(chrs.next())
+						{
+							String score = chrs.getString("TABLE_NAME");
+							scoreString += score+"\n";
+						}*/
+
+/*
+
+					String[] scoreArray = scoreString.split("\n");
+					if(scoreString.contains("SCORE")!=true)
+					{
+						con1.prepareStatement(create).executeUpdate();
+					}
+*/
+
+
+
 				PreparedStatement inps = con1.prepareStatement(insert);
 				inps.setString(1,id);
 				inps.setString(2,name);
