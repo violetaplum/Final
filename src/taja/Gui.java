@@ -28,7 +28,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 	public static JLabel[] printAllJlabel2;
 	public static int speed = 500;// 글자가 내려오는 속도를 정적으로 정수형 변수로 선언한다. 초기값은 1000
 	private JLabel tajaLabel,askNickname,askName,resultNickname,resultName, resultAc, resultTime;
-	private JButton startButton, quitButton; // JButton
+	private JButton startButton, quitButton, lowButton, middleButton, highButton; // JButton
 	// 정의
 	private JTextField insertDap, inputNickname,inputName; // JTextField 정의
 	private Random myRandom = new Random(); // 랜덤함수 정의
@@ -62,10 +62,37 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 
 
 		startButton = new JButton("시작");
-		startButton.setForeground(Color.blue);
-		startButton.setBounds(620, 235, 100, 43); // strartButton의 좌표와,범위 지정
+		startButton.setForeground(Color.black);
+		startButton.setBounds(620, 200, 100, 43); // strartButton의 좌표와,범위 지정
 		add(startButton); // Gui JPanel에 startButton을 추가한다.
 		startButton.addActionListener(this); // startButton에 ActionListener 추가
+
+
+		highButton = new JButton("상");
+		highButton.setForeground(Color.black);
+		highButton.setFont(new Font("굴림",Font.BOLD,15));
+		highButton.setOpaque(true);
+		highButton.setBounds(580,280,50,43);
+		add(highButton);
+		highButton.addActionListener(this);
+
+
+		middleButton = new JButton("중");
+		middleButton.setForeground(Color.black);
+		middleButton.setFont(new Font("굴림",Font.BOLD,15));
+		middleButton.setOpaque(true);
+		middleButton.setBounds(625,280,50,43);
+		add(middleButton);
+		middleButton.addActionListener(this);
+
+
+		lowButton = new JButton("하");
+		lowButton.setForeground(Color.black);
+		lowButton.setFont(new Font("굴림",Font.BOLD,15));
+		lowButton.setOpaque(true);
+		lowButton.setBounds(670,280,50,43);
+		add(lowButton);
+		lowButton.addActionListener(this);
 
 
 
@@ -85,6 +112,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 		askName.setBackground(Color.white);
 		askName.setLocation(150,280);
 		add(askName);
+
 
 
 		inputNickname = new JTextField(10);
@@ -121,6 +149,18 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 			}else if(JOptionPane.YES_OPTION==flag) {
 				System.exit(0); // 프로그램을 종료한다
 			}
+		}
+		else if(e.getSource()==lowButton)
+		{
+			speed=1000;
+		}
+		else if(e.getSource()==middleButton)
+		{
+			speed=500;
+		}
+		else if(e.getSource()==highButton)
+		{
+			speed=50;
 		}
 	}
 
@@ -205,14 +245,15 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				System.out.println("Connected");
 				String check = "select table_name from user_tables where table_name like 'SCORE'";
 				String create = "create table score(id varchar2(30), name varchar(30), time number(30))";
-				String insert = "insert into score(id,name,time) values(?,?,?)";
+
 				String id = studentNickname;
 				String name = studentName;
 				int time = total_play_time.gamePlayTime-1;
 				//선언들--------------------------------------------------------------------------------------end
-				String scoreString="";
 
-			PreparedStatement inps = con1.prepareStatement(insert);
+
+				String insert = "insert into score(id,name,time) values(?,?,?)";
+				PreparedStatement inps = con1.prepareStatement(insert);
 				inps.setString(1,id);
 				inps.setString(2,name);
 				inps.setInt(3,time);
@@ -314,9 +355,13 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 		askName.setVisible(false);
 
 		startButton.setVisible(false); // 시작 버튼 안보이게
+		lowButton.setVisible(false);
+		middleButton.setVisible(false);
+		highButton.setVisible(false);
 		inputNickname.setVisible(false);
 		inputName.setVisible(false);
 		insertDap.setVisible(true); // 답 입력창 보이게 함
+
 
 		// 배경 이미지를 두번째 이미지로 바꿈
 
