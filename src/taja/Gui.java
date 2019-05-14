@@ -58,6 +58,7 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 		tajaLabel.setBounds(300, 80, 250, 40);
 		tajaLabel.setForeground(Color.white);
 
+
 		add(tajaLabel);
 
 
@@ -217,9 +218,9 @@ public class Gui extends JPanel implements ActionListener, KeyListener {
 				&& arrJlabel[7].isVisible() == false && arrJlabel[8].isVisible() == false) { // 모든
 			/* JLabel이 보이지 않으면(즉,완료되면) */
 
-// 문제로 나왔던 단어들을 게임상단에 표시해 준다
 
-			data_rain.stop(); // 산성비 쓰레드 멈춤
+
+			data_rain.stop(); // rain 쓰레드 멈춤
 			total_play_time.stop(); // 시간 타이머 쓰레드 멈춤.
 			correctPercent = Math.round((correctCount / tryCount)* 100); /*
 			 * 명중률을 계산함. 맞은회수/총횟수 * 100해서 소수점 버림
